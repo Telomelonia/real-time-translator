@@ -1,0 +1,184 @@
+1
+00:00:00,000 --> 00:00:13,680
+Good morning. Let's have a little chat at the beginning of the day.
+
+2
+00:00:13,680 --> 00:00:20,160
+Did you sleep well last night?
+
+3
+00:00:20,160 --> 00:00:27,840
+Did you eat breakfast?
+
+4
+00:00:27,840 --> 00:00:34,000
+Is that so? I'm going to eat a pancake from now on.
+
+5
+00:00:34,000 --> 00:00:40,080
+How's the weather now?
+
+6
+00:00:40,080 --> 00:00:46,560
+I see. As you can see, the weather is good here.
+
+7
+00:00:46,560 --> 00:00:57,760
+How have you been studying Japanese lately?
+
+8
+00:00:57,760 --> 00:01:08,400
+What kind of apps do you use to study Japanese?
+
+9
+00:01:08,480 --> 00:01:17,360
+Is there any word you've learned recently?
+
+10
+00:01:17,360 --> 00:01:21,840
+It's amazing that you know such a word.
+
+11
+00:01:21,840 --> 00:01:31,920
+By the way, what day was it today?
+
+12
+00:01:32,000 --> 00:01:41,120
+What are you going to do today?
+
+13
+00:01:41,120 --> 00:01:51,200
+Is that so? I'm going to brush my teeth after I eat breakfast and go to the post office.
+
+14
+00:01:51,200 --> 00:01:57,360
+By the way, what time is it now?
+
+15
+00:01:57,440 --> 00:01:59,760
+Is it that time already?
+
+16
+00:01:59,760 --> 00:02:03,760
+A fun time passes in an instant.
+
+17
+00:02:03,760 --> 00:02:07,440
+I hope today will be a wonderful day.
+
+18
+00:02:07,440 --> 00:02:16,400
+See you later.
+
+19
+00:02:16,400 --> 00:02:23,600
+Good morning. Let's have a little chat at the beginning of the day.
+
+20
+00:02:23,680 --> 00:02:27,040
+Did you sleep well last night?
+
+21
+00:02:27,040 --> 00:02:30,160
+Yes, I slept well.
+
+22
+00:02:30,160 --> 00:02:33,520
+Did you eat breakfast?
+
+23
+00:02:33,520 --> 00:02:37,840
+Yes, I ate bread and apples.
+
+24
+00:02:37,840 --> 00:02:44,160
+Is that so? I'm going to eat a pancake from now on.
+
+25
+00:02:44,160 --> 00:02:47,280
+How's the weather now?
+
+26
+00:02:47,280 --> 00:02:50,240
+It's raining a little.
+
+27
+00:02:50,240 --> 00:02:52,240
+That's right.
+
+28
+00:02:52,240 --> 00:02:56,640
+As you can see here, the weather is good.
+
+29
+00:02:56,640 --> 00:03:00,720
+How have you been studying Japanese lately?
+
+30
+00:03:00,720 --> 00:03:07,760
+I study for an hour every day, but it's difficult to remember words.
+
+31
+00:03:07,760 --> 00:03:12,400
+What kind of apps do you use to study Japanese?
+
+32
+00:03:12,400 --> 00:03:18,480
+I use YouTube or Netflix to study.
+
+33
+00:03:18,480 --> 00:03:22,800
+What words have you learned recently?
+
+34
+00:03:22,800 --> 00:03:27,360
+I learned the word eat-all yesterday.
+
+35
+00:03:27,360 --> 00:03:31,760
+It's amazing that you know such a word.
+
+36
+00:03:31,760 --> 00:03:37,840
+By the way, what day was it today?
+
+37
+00:03:37,840 --> 00:03:41,920
+It's Saturday, February 25th.
+
+38
+00:03:41,920 --> 00:03:45,280
+What are you going to do today?
+
+39
+00:03:45,360 --> 00:03:51,040
+I'm going to do homework at school and go to the supermarket with my mother.
+
+40
+00:03:51,040 --> 00:04:01,200
+Is that so? I'm going to wash the dishes, brush my teeth, and go to the post office after I eat breakfast.
+
+41
+00:04:01,200 --> 00:04:04,720
+By the way, what time is it now?
+
+42
+00:04:04,720 --> 00:04:07,280
+It's 820 minutes.
+
+43
+00:04:07,280 --> 00:04:09,600
+Is it that time already?
+
+44
+00:04:09,600 --> 00:04:13,680
+A fun time passes in a flash.
+
+45
+00:04:13,760 --> 00:04:17,360
+I hope you have a wonderful day today.
+
+46
+00:04:17,360 --> 00:04:19,360
+See you later.
+
