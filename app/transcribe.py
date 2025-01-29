@@ -91,7 +91,7 @@ class AudioTranscriber:
                 
                 buffer_duration = len(audio_buffer) * self.CHUNK / self.RATE
                 
-                if buffer_duration >= 2.0:
+                if buffer_duration >= 3.0:
                     self._process_buffer(audio_buffer)
                     audio_buffer = []
                     last_transcription_time = time.time()
