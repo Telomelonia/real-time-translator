@@ -1,3 +1,4 @@
+# transcribe.py
 import numpy as np
 import pyaudio
 import threading
@@ -5,14 +6,17 @@ import queue
 import torch
 from faster_whisper import WhisperModel
 import time
+import multiprocessing
 
 class AudioTranscriber:
-    def __init__(self):
+    def __init__(self, translation_queue):
         self.model = WhisperModel(
             "large-v3",
             device="cuda",
             compute_type="float16"
         )
+        
+        self.translation_queue = translation_queue
         
         # Audio recording parameters
         self.CHUNK = 1024 * 2
@@ -24,10 +28,12 @@ class AudioTranscriber:
         self.audio = pyaudio.PyAudio()
         self.audio_queue = queue.Queue()
         self.is_recording = False
-        
+
     def start_recording(self):
+        """Start recording audio from microphone"""
         self.is_recording = True
         
+        # Open stream
         self.stream = self.audio.open(
             format=self.FORMAT,
             channels=self.CHANNELS,
@@ -39,13 +45,16 @@ class AudioTranscriber:
         print("Recording started (Press Ctrl+C to stop)")
         print("Speak in Japanese...")
         
+        # Start recording thread
         self.recording_thread = threading.Thread(target=self._record_audio)
         self.recording_thread.start()
         
+        # Start transcription thread
         self.transcription_thread = threading.Thread(target=self._transcribe_audio)
         self.transcription_thread.start()
-    
+
     def stop_recording(self):
+        """Stop recording audio"""
         self.is_recording = False
         if hasattr(self, 'recording_thread'):
             self.recording_thread.join()
@@ -55,7 +64,7 @@ class AudioTranscriber:
         self.stream.close()
         self.audio.terminate()
         print("\nRecording stopped")
-    
+
     def _record_audio(self):
         while self.is_recording:
             try:
@@ -68,7 +77,7 @@ class AudioTranscriber:
             except Exception as e:
                 print(f"Error recording audio: {e}")
                 continue
-    
+
     def _transcribe_audio(self):
         audio_buffer = []
         last_transcription_time = time.time()
@@ -94,7 +103,7 @@ class AudioTranscriber:
                     audio_buffer = []
                     last_transcription_time = time.time()
                 continue
-    
+
     def _process_buffer(self, audio_buffer):
         try:
             audio_data = np.concatenate(audio_buffer)
@@ -105,13 +114,20 @@ class AudioTranscriber:
             )
             
             for segment in segments:
-                print(f"[{segment.start:.1f}s -> {segment.end:.1f}s] {segment.text}")
+                self.translation_queue.put({
+                    'timestamp': f"[{segment.start:.1f}s -> {segment.end:.1f}s]",
+                    'text': segment.text
+                })
+                print(f"\nTranscribed: {segment.text}")
                 
         except Exception as e:
             print(f"Error transcribing audio: {e}")
 
-def main():
-    transcriber = AudioTranscriber()
+def main(translation_queue=None):
+    if translation_queue is None:
+        translation_queue = multiprocessing.Queue()
+        
+    transcriber = AudioTranscriber(translation_queue)
     
     try:
         transcriber.start_recording()
@@ -120,6 +136,7 @@ def main():
     
     except KeyboardInterrupt:
         transcriber.stop_recording()
+        translation_queue.put(None)
         print("Transcription ended")
 
 if __name__ == "__main__":
