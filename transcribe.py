@@ -3,7 +3,6 @@ import numpy as np
 import pyaudio
 import threading
 import queue
-import torch
 from faster_whisper import WhisperModel
 import time
 import multiprocessing

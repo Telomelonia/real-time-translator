@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Translation Terminal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .terminal {
+            background-color: #000;
+            border-radius: 5px;
+            padding: 20px;
+            height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
+
+        .translation-block {
+            border-left: 2px solid #444;
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+
+        .timestamp {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .japanese {
+            color: #7FFF00;  /* Japanese text in bright green */
+        }
+
+        .english {
+            color: #00BFFF;  /* English text in bright blue */
+        }
+
+        .separator {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        #status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            padding: 5px 20px;
+            font-size: 0.9em;
+            color: #0F0;  /* Matrix green */
+        }
+
+        /* Custom scrollbar */
+        .terminal::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .terminal::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+
+        .terminal::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 5px;
+        }
+
+        .terminal::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-header">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot yellow"></div>
+        <div class="terminal-dot green"></div>
+    </div>
+    <div class="terminal" id="terminal">
+        <div style="color: #0F0;">Real-time Japanese Speech Recognition and Translation</div>
+        <div style="color: #666;">System initialized and ready for input...</div>
+    </div>
+    <div id="status-bar">● Recording Active | Connected to Server</div>
+
+    <script>
+        const socket = io();
+        const terminal = document.getElementById('terminal');
+        const statusBar = document.getElementById('status-bar');
+
+        function appendToTerminal(content) {
+            const div = document.createElement('div');
+            div.innerHTML = content;
+            terminal.appendChild(div);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        socket.on('connect', () => {
+            statusBar.innerHTML = '● Recording Active | Connected to Server';
+            statusBar.style.color = '#0F0';
+        });
+
+        socket.on('translation', (data) => {
+            const translationHtml = `
+                <div class="translation-block">
+                    <div class="timestamp">${data.timestamp}</div>
+                    <div class="japanese">🇯🇵 ${data.original}</div>
+                    <div class="english">🇬🇧 ${data.translation}</div>
+                    <div class="separator">--------------------------------------------------</div>
+                </div>
+            `;
+            appendToTerminal(translationHtml);
+        });
+
+        socket.on('status', (data) => {
+            appendToTerminal(`<div style="color: #666;">${data.message}</div>`);
+        });
+
+        socket.on('disconnect', () => {
+            statusBar.innerHTML = '○ Disconnected';
+            statusBar.style.color = '#FF0000';
+            appendToTerminal('<div style="color: #FF0000;">Disconnected from server</div>');
+        });
+    </script>
+</body>
+</html>
